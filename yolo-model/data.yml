@@ -1,0 +1,6 @@
+train: ../dataset-yolo/train
+val: ../dataset-yolo/val
+test: ../dataset-yolo/test
+
+nc: 2  # Número de classes (exemplo: 0 para health, 1 para infected)
+names: ["health", "infected"]
