@@ -29,7 +29,7 @@ def predict():
         for image_path in image_paths:
             model.load_best_weights()
             model.predict(image_path)
-            model.filter_by_confidence(0.2)
+            model.filter_by_confidence(0.3)
             predict_info = model.get_predict_info()
 
             if predict_info:
@@ -63,10 +63,10 @@ def predict():
             "labeled_images": labeled_images,
         }), HttpStatus.HTTP_OK
     except Exception as e:
-         return jsonify({ "message": str(e) }), HttpStatus.BAD_REQUEST       
+         return jsonify({ "message": str(e) }), HttpStatus.BAD_REQUEST
 
 
 @api.route('/images/predict/<filename>', methods=['GET'])
 def get_image(filename):
     return send_from_directory(os.path.abspath("../api/images/predict"), filename)
-  
+
