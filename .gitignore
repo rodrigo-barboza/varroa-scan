@@ -1,0 +1,7 @@
+dataset-sm/
+__pycache__/
+.env
+*.png
+*.jpeg
+*.webp
+*.jpg
