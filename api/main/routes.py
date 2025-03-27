@@ -8,7 +8,7 @@ from utils.DataAnalisys import DataAnalisys
 
 load_dotenv()
 
-api = Blueprint('api', __name__)
+api = Blueprint('main', __name__)
 
 image_manipulator = ImageManipulator()
 model = YoloModel()

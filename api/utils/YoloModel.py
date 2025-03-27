@@ -6,11 +6,7 @@ from ultralytics.engine.results import Boxes
 
 class YoloModel:
     def __init__(self):
-        self.model = None
-        self.results = None
-        self.current_image_path = None
-        self.IOU_THRESHOLD = 0.5
-        self.predict_info = None
+        self.resetState()
 
     def set_iou_threshold(self, threshold):
         self.IOU_THRESHOLD = threshold

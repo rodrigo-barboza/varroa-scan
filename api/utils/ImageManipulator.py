@@ -25,3 +25,5 @@ class ImageManipulator:
     def delete_temporary_images(self):
         for image_path in self.image_paths:
             os.remove(image_path)
+
+        self.image_paths = []
