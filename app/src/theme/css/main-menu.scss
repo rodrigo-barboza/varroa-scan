@@ -1,0 +1,16 @@
+@mixin menu-background() {
+    --card-color: #f8f8f8;
+    --big-circle-r: 37px;
+    --circle-r: 13px;
+    --circle-d: calc(var(--circle-r) * 2);
+
+    filter: drop-shadow(0px 1px 8px #00000026);
+    background:
+    radial-gradient(
+        circle at calc(50% + 1px) 0px,
+        transparent var(--big-circle-r),
+        var(--card-color) calc(var(--big-circle-r) + 1px)
+      )
+    0px 6px / 100% 100% no-repeat
+    no-repeat,
+}
