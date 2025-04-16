@@ -13,10 +13,12 @@ class DataAnalisys:
 
     @staticmethod
     def get_infestation_level(infestation_percentage):
+        if infestation_percentage == 0:
+            return "healthy"
         if infestation_percentage < 10:
-            return "baixa"
+            return "low"
         elif infestation_percentage < 50:
-            return "média"
+            return "medium"
         else:
-            return "alta"
+            return "high"
 

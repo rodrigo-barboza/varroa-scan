@@ -1,6 +1,7 @@
 import os
 from flask import Blueprint, request, jsonify, send_from_directory
 from dotenv import load_dotenv
+from datetime import datetime
 from utils.HttpStatus import HttpStatus
 from utils.ImageManipulator import ImageManipulator
 from utils.YoloModel import YoloModel
@@ -40,11 +41,12 @@ def predict():
                 "message": "Imagens processadas com sucesso.",
                 "results": {
                     "varroa_detected_count": 0,
-                    "infestation_level": None,
+                    "infestation_level": 'healthy',
                     "infestation_percent": 0,
                     "analized_images": analized_images_count,
                 },
                 "labeled_images": [],
+                "analized_at": datetime.now().timestamp(),
             }), HttpStatus.HTTP_OK
 
         labeled_images = [f"{os.getenv('API_URL')}/images/predict/{predict_info['filename']}" for predict_info in predicted_info]
@@ -61,6 +63,7 @@ def predict():
             "message": "Imagens processadas com sucesso.",
             "results": analisys_results,
             "labeled_images": labeled_images,
+            "analized_at": datetime.now().timestamp(),
         }), HttpStatus.HTTP_OK
     except Exception as e:
          return jsonify({ "message": str(e) }), HttpStatus.BAD_REQUEST       
