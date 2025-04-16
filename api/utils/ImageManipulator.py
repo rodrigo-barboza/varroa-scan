@@ -7,9 +7,9 @@ class ImageManipulator:
     def validate(self, images):
         if not images:
             raise Exception("Nenhuma imagem foi enviada.")
-        if len(images) > 3:
+        if len(images) > 5:
             raise Exception("No máximo 5 imagens podem ser enviadas por requisição.")
-        
+
         return self
 
     def save_temporarily(self, images):

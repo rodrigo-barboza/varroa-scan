@@ -12,10 +12,10 @@ class YoloModel:
         self.IOU_THRESHOLD = threshold
 
         return self
-    
+
     def best_weights_path(self):
         return os.path.abspath("../api/weights/best.pt")
-    
+
     def predict_images_directory(self):
         return os.path.abspath("../api/images/predict")
 
@@ -72,7 +72,7 @@ class YoloModel:
                 return self
 
         return self
-    
+
     def resetState(self):
         self.model = None
         self.results = None
