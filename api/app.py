@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 CORS(app)
 
-app.register_blueprint(api, url_prefix='/api/v1')
+app.register_blueprint(api, url_prefix='/v1')
 
 @app.route('/ping', methods=['GET'])
 def ping():
