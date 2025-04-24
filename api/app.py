@@ -9,5 +9,5 @@ CORS(app)
 app.register_blueprint(api, url_prefix='/api/v1')
 
 if __name__ == '__main__':
-    app.run(debug=True, ssl_context='adhoc')
+    app.run(debug=True)
 
