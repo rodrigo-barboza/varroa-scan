@@ -30,7 +30,7 @@ def predict():
         for image_path in image_paths:
             model.load_best_weights()
             model.predict(image_path)
-            model.filter_by_confidence(0.59)
+            model.filter_by_confidence(0.6)
             predict_info = model.get_predict_info()
 
             if predict_info:
