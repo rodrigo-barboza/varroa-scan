@@ -72,4 +72,3 @@ def predict():
 @api.route('/images/predict/<filename>', methods=['GET'])
 def get_image(filename):
     return send_from_directory(os.path.abspath("../api/images/predict"), filename)
-
