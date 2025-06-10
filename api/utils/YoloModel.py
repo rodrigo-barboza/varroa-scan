@@ -42,7 +42,7 @@ class YoloModel:
             labels = boxes.cls  # Classes detectadas
 
             # Filtra caixas com confiança maior que CONFIDENCE_THRESHOLD
-            high_conf_idx = confs > confidence_threshold
+            high_conf_idx = confs >= confidence_threshold
             confs = confs[high_conf_idx]
             xyxy = xyxy[high_conf_idx]
             labels = labels[high_conf_idx]
