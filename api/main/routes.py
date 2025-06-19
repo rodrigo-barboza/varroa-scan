@@ -19,7 +19,7 @@ def predict():
     images = request.files.getlist('images')
     analized_images_count = len(images)
     bee_count_estimate = request.form.get('bee_count_estimate')
-    treshold = request.form.get('threshold', 0.80)
+    treshold = request.form.get('threshold', 0.55)
 
     try:
         image_manipulator.validate(images)
