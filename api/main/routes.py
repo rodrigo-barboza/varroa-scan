@@ -19,6 +19,7 @@ def predict():
     images = request.files.getlist('images')
     analized_images_count = len(images)
     bee_count_estimate = request.form.get('bee_count_estimate')
+    treshold = request.form.get('threshold', 0.80)
 
     try:
         image_manipulator.validate(images)
@@ -30,7 +31,7 @@ def predict():
         for image_path in image_paths:
             model.load_best_weights()
             model.predict(image_path)
-            model.filter_by_confidence(0.80)
+            model.filter_by_confidence(float(treshold))
             predict_info = model.get_predict_info()
 
             if predict_info:
