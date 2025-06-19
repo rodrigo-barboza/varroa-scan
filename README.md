@@ -1,24 +1,35 @@
-# varroa-scan
-A mobile application capable of identifying the Varroa destructor mite in bee colonies using convolutional neural networks and VarroaDataset
+# VarroaScan
 
-## SEMANA 1
+Aplicativo móvel para identificação do ácaro *Varroa destructor* em colônias de abelhas, utilizando redes neurais convolucionais e o conjunto de dados VarroaDataset.
 
-- 1 - Com a ajuda da ferramenta labelImg, rotular 1 imagem da base de dados para ver o formato que ele gera para o YOLO
-- 2 - Comparar o label gerado para o YOLO com o original da base de dados
-- 3 - Criar algoritmo que converte o formato das labels originais para o formato do YOLO para evitar rotulamento manual
-- 4 - Pegar a base original e normalizar as coordenadas de bounding boxes no formato do YOLO
-- 5 - Criar uma versão menor da base de dados para testar no treinamento
-    - para o conjunto de
-        - treinamento: 200 exemplos de 8225 (2,4%)
-        - teste: 100 de 3408 (2,93%)
-        - validação: 70 de 1876 (3,73%)
-- 6 - Testar com imagens aleatórias do google o modelo treinado com a base pequena
+## Estrutura de Diretórios
 
-------------------------------------------------------------------------------------------------------------------
-## SEMANA 2
+- **api/**  
+  Contém o código-fonte da API de visão computacional utilizada para realizar as predições.
 
-- 1 - Testar ajustar hiperparâmetros na base pequena para ver se existe uma melhora
-- 2 - Dobrar o tamanho da base pequena e ver como o modelo se sai
-- 3 - Repetir o passo 1
-- 4 - Repetir o passo 2
+- **app/**  
+  Contém o código-fonte da aplicação móvel desenvolvida para Android.
 
+- **dataset/**  
+  Conjunto de dados original, sem modificações.
+
+- **dataset-sm/**  
+  Versão reduzida e adaptada do dataset original, com menor quantidade de imagens e coordenadas de *bounding boxes* normalizadas.
+
+- **yolo/**  
+  Contém o código utilizado para o treinamento do modelo YOLOv8, incluindo o notebook do Google Colab e o script de normalização das *bounding boxes*.
+
+- **varroa-scan.apk**  
+  Arquivo APK da aplicação, disponível para instalação direta em dispositivos Android.
+
+## Conjunto de Dados
+
+Este projeto utiliza o [VarroaDataset](https://github.com/schurist/VarroaDataset), um conjunto de imagens anotadas para a detecção do ácaro *Varroa destructor* em abelhas, publicado por Schurischuster et al.
+
+O dataset original está disponível no repositório oficial:  
+🔗 [github.com/schurist/VarroaDataset](https://github.com/schurist/VarroaDataset)
+
+Créditos ao autor original:
+> **Schurischuster, H. et al.**  
+> *VarroaDataset – A public image dataset for detection of the Varroa destructor mite on honey bees*  
+> Disponível em: https://github.com/schurist/VarroaDataset
