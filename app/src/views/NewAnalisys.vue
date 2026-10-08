@@ -53,7 +53,7 @@ import { useAnalysisStore } from '../store/analysesStore';
 import { useRouter } from 'vue-router';
 import AnalysisController from '../server/controllers/AnalysisController';
 import AppTitle from '../components/Layout/AppTitle.vue';
-import ArrowLeft from '../theme/images/arrow-left.png';
+import ArrowLeft from '../theme/images/arrow-left.svg';
 import FileUpload from '../components/FileUpload.vue';
 import NumberInput from '../components/NumberInput.vue';
 import SyncModal from '../components/SyncModal.vue';
