@@ -1,7 +1,7 @@
-// Server block da API VarroaScan em subdominio dedicado.
-// Salvar em /etc/nginx/sites-available/varroascan.rodrigobarboza.com.br
-// e linkar: ln -s /etc/nginx/sites-available/varroascan.rodrigobarboza.com.br /etc/nginx/sites-enabled/
-// Certificado: sudo certbot --nginx -d varroascan.rodrigobarboza.com.br
+# Server block da API VarroaScan em subdominio dedicado.
+# Salvar em /etc/nginx/sites-available/varroascan.rodrigobarboza.com.br
+# e linkar: ln -s /etc/nginx/sites-available/varroascan.rodrigobarboza.com.br /etc/nginx/sites-enabled/
+# Certificado: sudo certbot --nginx -d varroascan.rodrigobarboza.com.br
 
 server {
     listen 80;
