@@ -4,3 +4,4 @@ flask_cors
 torchvision
 torch
 ultralytics
+gunicorn

@@ -1,4 +1,5 @@
 import os
+import threading
 from flask import Blueprint, request, jsonify, send_from_directory
 from dotenv import load_dotenv
 from datetime import datetime
@@ -11,8 +12,8 @@ load_dotenv()
 
 api = Blueprint('main', __name__)
 
-image_manipulator = ImageManipulator()
 model = YoloModel()
+model_lock = threading.Lock()
 
 @api.route('/predict', methods=['POST'])
 def predict():
@@ -21,6 +22,8 @@ def predict():
     bee_count_estimate = request.form.get('bee_count_estimate')
     treshold = request.form.get('threshold', 0.55)
 
+    image_manipulator = ImageManipulator()
+
     try:
         image_manipulator.validate(images)
         image_manipulator.save_temporarily(images)
@@ -28,14 +31,16 @@ def predict():
 
         predicted_info = []
 
-        for image_path in image_paths:
+        with model_lock:
             model.load_best_weights()
-            model.predict(image_path)
-            model.filter_by_confidence(float(treshold))
-            predict_info = model.get_predict_info()
 
-            if predict_info:
-                predicted_info.append(predict_info)
+            for image_path in image_paths:
+                model.predict(image_path)
+                model.filter_by_confidence(float(treshold))
+                predict_info = model.get_predict_info()
+
+                if predict_info:
+                    predicted_info.append(predict_info)
 
         if len(predicted_info) == 0:
             return jsonify({
@@ -58,8 +63,6 @@ def predict():
             analized_images_count
         )
 
-        image_manipulator.delete_temporary_images()
-
         return jsonify({
             "message": "Imagens processadas com sucesso.",
             "results": analisys_results,
@@ -68,6 +71,8 @@ def predict():
         }), HttpStatus.HTTP_OK
     except Exception as e:
          return jsonify({ "message": str(e) }), HttpStatus.BAD_REQUEST
+    finally:
+        image_manipulator.delete_temporary_images()
 
 
 @api.route('/images/predict/<filename>', methods=['GET'])

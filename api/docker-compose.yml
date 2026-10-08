@@ -1,0 +1,13 @@
+services:
+  api:
+    build: .
+    image: varroa-scan-api:latest
+    container_name: varroa-scan-api
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - "127.0.0.1:5000:5000"
+    volumes:
+      - ./images/predict:/app/api/images/predict
+      - ./images/received:/app/api/images/received
+    mem_limit: 4g

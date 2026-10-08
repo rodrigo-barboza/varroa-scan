@@ -6,7 +6,8 @@ from ultralytics.engine.results import Boxes
 
 class YoloModel:
     def __init__(self):
-        self.resetState()
+        self.model = None
+        self.reset_image_state()
 
     def set_iou_threshold(self, threshold):
         self.IOU_THRESHOLD = threshold
@@ -20,7 +21,8 @@ class YoloModel:
         return os.path.abspath("../api/images/predict")
 
     def load_best_weights(self):
-        self.model = YOLO(self.best_weights_path())
+        if self.model is None:
+            self.model = YOLO(self.best_weights_path())
 
         return self
 
@@ -73,8 +75,7 @@ class YoloModel:
 
         return self
 
-    def resetState(self):
-        self.model = None
+    def reset_image_state(self):
         self.results = None
         self.current_image_path = None
         self.IOU_THRESHOLD = 0.5
@@ -82,7 +83,7 @@ class YoloModel:
 
     def get_predict_info(self):
         info = self.predict_info
-        self.resetState()
+        self.reset_image_state()
 
         return info
 
